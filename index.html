@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KzLookup - Plateforme de Cybersécurité</title>
+    <meta name="description" content="KzLookup - Détectez les violations de données et protégez vos informations.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AYLUeDSctdr3WOteftyRge3-F7DIcR64AMznD_6lmFH0KB9kVdGKYN3PwFpEG0Ocd_4Od4V6owaGNZfh&currency=EUR"></script>
+</head>
+
+<body>
+    <!-- Announcement Banner -->
+    <div class="announcement-banner" id="announcementBanner">
+        <div class="banner-content">
+            <div class="banner-avatar">
+                <img src="file:///C:/Users/4bdv1/Documents/KZ/ft9n611.png" alt="L'équipe de Modearation de KzLookup">
+            </div>
+            <div class="banner-info">
+                <div class="banner-user">L'équipe de Modearation de KzLookup</div>
+                <div class="banner-text">
+                    "Bienvenue sur KzLookup"
+                </div>
+            </div>
+            <div class="banner-tag">VÉRIFIÉ</div>
+        </div>
+        <button class="banner-close" onclick="document.getElementById('announcementBanner').style.display='none'"><i class="fas fa-times"></i></button>
+        <div class="banner-progress"></div>
+    </div>
+
+    <!-- Animated particle canvas background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Halloween floating elements -->
+    <div class="halloween-floaters">
+        <span class="float-item" style="left: 5%; animation-delay: 0s;">🎃</span>
+        <span class="float-item" style="left: 15%; animation-delay: 2s;">🦇</span>
+        <span class="float-item" style="left: 25%; animation-delay: 4s;">👻</span>
+        <span class="float-item" style="left: 35%; animation-delay: 1s;">🎃</span>
+        <span class="float-item" style="left: 45%; animation-delay: 3s;">🦇</span>
+        <span class="float-item" style="left: 55%; animation-delay: 5s;">👻</span>
+        <span class="float-item" style="left: 65%; animation-delay: 2s;">🎃</span>
+        <span class="float-item" style="left: 75%; animation-delay: 4s;">🦇</span>
+        <span class="float-item" style="left: 85%; animation-delay: 1s;">👻</span>
+        <span class="float-item" style="left: 95%; animation-delay: 3s;">🎃</span>
+    </div>
+
+    <!-- Halloween fog effect -->
+    <div class="halloween-fog"></div>
+
+    <div id="app">
+        <!-- Header -->
+        <header class="header" id="mainHeader">
+            <div class="scroll-progress" id="scrollProgress"></div>
+            <div class="nav-container">
+                <div class="logo-wrapper" onclick="showPage('home')">
+                    <span class="logo-text">KzLookup</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#" onclick="showPage('home')" class="nav-item active" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>Accueil</span>
+                    </a>
+                    <a href="#" onclick="showPage('features')" class="nav-item" data-page="features">
+                        <i class="fas fa-star"></i>
+                        <span>Fonctionnalités</span>
+                    </a>
+                    <a href="#" onclick="showPage('pricing')" class="nav-item" data-page="pricing">
+                        <i class="fas fa-tags"></i>
+                        <span>Tarifs</span>
+                    </a>
+                    <a href="#" onclick="showPage('users')" class="nav-item" data-page="users">
+                        <i class="fas fa-users"></i>
+                        <span>Utilisateurs</span>
+                    </a>
+                    <a href="#" onclick="showPage('feedback')" class="nav-item" data-page="feedback">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Feedback</span>
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="nav-settings-btn" id="navSettingsBtn" onclick="showPage('dashboard')"
+                        title="Paramètres" style="display:none;">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="icon-btn" id="userIconBtn" onclick="showPage('dashboard')" title="Mon Compte"
+                        style="display:none; padding:0; overflow:hidden; width:38px; height:38px;">
+                        <i class="fas fa-user" id="navUserIcon"></i>
+                        <img id="navAvatarImg" src="" alt=""
+                            style="display:none; width:100%; height:100%; object-fit:cover;">
+                    </button>
+                    <button id="userBtn" class="btn-login premium-user-btn"
+                        onclick="showPage('dashboard')">Connexion</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <section id="homePage" class="page active">
+                <div class="hero-section">
+                    <div class="hero-glow"></div>
+                    <div class="tech-decor-line tl"></div>
+                    <div class="tech-decor-line br"></div>
+                    
+                    <div class="badge-trust magnetic-hover">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Plateforme de recherche</span>
+                    </div>
+
+                    <div class="logo-nexus-wrapper">
+                        <div class="nexus-ring"></div>
+                        <h1 class="hero-title">
+                            <span class="title-word" style="animation-delay:0s">Kz</span><span
+                                class="title-word text-gradient nexus-logo" style="animation-delay:0.15s">Lookup</span>
+                        </h1>
+                        <div class="logo-glitch"></div>
+                    </div>
+
+                    <p class="hero-description">
+                        Recherchez des personnes et accédez à des informations fiables en quelques secondes.
+                        Notre plateforme vous permet de trouver rapidement les données dont vous avez besoin grâce à un
+                        système de recherche puissant, simple à utiliser et entièrement sécurisé.
+                    </p>
+
+                    <div class="hero-badges">
+                        <div id="headerPlanBadge" class="badge-premium magnetic-hover" style="display: none;">
+                            <i class="fas fa-crown"></i>
+                            <span id="headerPlanText">FREE</span>
+                        </div>
+                        <div class="badge-searches magnetic-hover">
+                            <div class="searches-info">
+                                <i class="fas fa-database"></i>
+                                <span id="searchCounterDisplay">5 / 5 recherches restantes aujourd'hui</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div id="searchProgressBar" class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="search-section">
+                        <div class="search-input-wrapper glow-on-hover">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" autocomplete="off"
+                                placeholder="Entrez un email, nom d'utilisateur, téléphone, IP..." value="">
+
+                            <button class="search-submit-btn btn-gold" id="searchBtn" onclick="performSearch()">
+                                Rechercher <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="popular-searches">
+                            <span class="label">Filtres:</span>
+                            <div class="search-tags">
+                                <span class="tag active" onclick="setFilter('auto')">Auto</span>
+                                <span class="tag" onclick="setFilter('email')">Email</span>
+                                <span class="tag" onclick="setFilter('username')">Username</span>
+                                <span class="tag" onclick="setFilter('name')">Nom / Prénom</span>
+                                <span class="tag" onclick="setFilter('phone')">Téléphone</span>
+                                <span class="tag" onclick="setFilter('ip')">Adresse IP</span>
+                                <span class="tag" onclick="setFilter('domain')">Domaine</span>
+                                <span class="tag" onclick="setFilter('hash')">Hash</span>
+                                <span class="tag" onclick="setFilter('discord')">Discord ID</span>
+                                <span class="tag" onclick="setFilter('snapchat')">Snapchat</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="stats-row">
+                        <div class="stat-item magnetic-hover">
+                            <div class="stat-number counter" data-target="10000000000">10k+</div>
+                            <div class="stat-label">Enregistrements</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item magnetic-hover">
+                            <div class="stat-number">50to+</div>
+                            <div class="stat-label">Sources</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item magnetic-hover">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Uptime</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Results Page -->
+            <section id="searchResultsPage" class="page">
+                <div class="container py-5">
+                    <div class="results-header-section">
+                        <div>
+                            <h1 class="results-title"><i class="fas fa-search"></i> Résultats de recherche</h1>
+                            <p class="results-subtitle" id="resultsCountText">0 résultat(s) trouvé(s)</p>
+                        </div>
+                        <div class="results-actions">
+                            <button class="btn-outline-red" onclick="downloadCurrentResults()">
+                                <i class="fas fa-cloud-download-alt"></i> Télécharger (.txt)
+                            </button>
+                            <button class="btn-outline-red" onclick="showPage('home')">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                        </div>
+                    </div>
+                    <div class="view-header">
+                        <h2 class="view-title">Search Results</h2>
+                        <div id="exportButtons" style="display: none; gap: 0.8rem; margin-left: auto;">
+                            <button class="btn btn-export json" onclick="downloadResults('json')">
+                                <i class="fas fa-file-code"></i> <span>JSON</span>
+                            </button>
+                            <button class="btn btn-export csv" onclick="downloadResults('csv')">
+                                <i class="fas fa-file-csv"></i> <span>CSV</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="resultsContainer" class="results-grid"></div>
+                </div>
+            </section>
+
+            <!-- Pricing Page -->
+            <section id="pricingPage" class="page">
+                <div class="container py-5">
+                    <div class="pricing-v6-hero">
+                        <div class="pv6-hero-badge"><i class="fas fa-gem"></i> Accès Garantie À Vie</div>
+                        <h2 class="pv6-hero-title">Débloquez <span class="text-gradient">la puissance absolue</span>
+                        </h2>
+                        <p class="pv6-hero-subtitle">⚠️ Pour acheter un plan, contactez-nous sur notre Discord pour payer et activer votre compte.</p>
+                        <button class="btn-red-full" onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')" style="margin-top: 1rem;">
+                            <i class="fab fa-discord"></i> Rejoindre Discord pour payer
+                        </button>
+                    </div>
+
+                    <div class="pricing-v6-grid">
+                        <!-- FREE -->
+                        <div class="pv6-card" data-plan="free">
+                            <div class="pv6-card-inner">
+                                <div class="pv6-glow pv6-glow-free"></div>
+                                <div class="pv6-header">
+                                    <span class="pv6-badge pv6-badge-free">EXPLORATEUR</span>
+                                    <h3 class="pv6-name">Free</h3>
+                                    <div class="pv6-price-wrap">
+                                        <span class="pv6-amount">0</span><span class="pv6-currency">€</span>
+                                        <span class="pv6-period">/mois</span>
+                                    </div>
+                                    <p class="pv6-desc">Idéal pour tester l'outil</p>
+                                </div>
+                                <div class="pv6-divider"></div>
+                                <ul class="pv6-features">
+                                    <li><i class="fas fa-check"></i> <strong>5</strong> recherches / jour</li>
+                                    <li><i class="fas fa-check"></i> Résultats basiques</li>
+                                    <li><i class="fas fa-check"></i> Support standard</li>
+                                    <li class="pv6-disabled"><i class="fas fa-xmark"></i> Profil personnalisé</li>
+                                    <li class="pv6-disabled"><i class="fas fa-xmark"></i> Résultats complets</li>
+                                </ul>
+                                <button class="pv6-btn pv6-btn-ghost" onclick="selectPlan('free')">Commencer
+                                    gratuit</button>
+                            </div>
+                        </div>
+
+                        <!-- BEGINNER -->
+                        <div class="pv6-card" data-plan="beginner">
+                            <div class="pv6-card-inner">
+                                <div class="pv6-glow pv6-glow-beginner"></div>
+                                <div class="pv6-header">
+                                    <span class="pv6-badge pv6-badge-beginner">DÉBUTANT</span>
+                                    <h3 class="pv6-name">Beginner</h3>
+                                    <div class="pv6-price-wrap">
+                                        <span class="pv6-amount">9</span><span class="pv6-decimal">.99</span><span
+                                            class="pv6-currency">€</span>
+                                        <span class="pv6-period">/mois</span>
+                                    </div>
+                                    <p class="pv6-desc">Pour un usage régulier</p>
+                                </div>
+                                <div class="pv6-divider"></div>
+                                <ul class="pv6-features">
+                                    <li><i class="fas fa-check"></i> <strong>100</strong> recherches / jour</li>
+                                    <li><i class="fas fa-check"></i> Résultats détaillés</li>
+                                    <li><i class="fas fa-check"></i> Support prioritaire</li>
+                                    <li><i class="fas fa-check"></i> Historique des recherches</li>
+                                    <li class="pv6-disabled"><i class="fas fa-xmark"></i> Bases de données exclusives
+                                    </li>
+                                </ul>
+                                <button class="pv6-btn pv6-btn-beginner"
+                                    onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')">Contacter sur Discord</button>
+                            </div>
+                        </div>
+
+                        <!-- PROFESSIONAL (Featured) -->
+                        <div class="pv6-card pv6-featured" data-plan="pro">
+                            <div class="pv6-popular-label"><i class="fas fa-fire"></i> LE CHOIX N°1</div>
+                            <div class="pv6-card-inner">
+                                <div class="pv6-glow pv6-glow-pro"></div>
+                                <div class="pv6-header">
+                                    <span class="pv6-badge pv6-badge-pro">EXPERT</span>
+                                    <h3 class="pv6-name">Professional</h3>
+                                    <div class="pv6-price-wrap">
+                                        <span class="pv6-amount">15</span><span class="pv6-currency">€</span>
+                                        <span class="pv6-period">/mois</span>
+                                    </div>
+                                    <p class="pv6-desc">La puissance sans limite</p>
+                                </div>
+                                <div class="pv6-divider"></div>
+                                <ul class="pv6-features">
+                                    <li><i class="fas fa-check"></i> <strong>500</strong> recherches / jour</li>
+                                    <li><i class="fas fa-check"></i> Accès total aux bases</li>
+                                    <li><i class="fas fa-check"></i> Support VIP 24h/7</li>
+                                    <li><i class="fas fa-check"></i> Exports illimités (.txt, .json)</li>
+                                    <li><i class="fas fa-check"></i> Badge & Profil Premium</li>
+                                </ul>
+                                <button class="pv6-btn pv6-btn-pro" onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')"><i
+                                        class="fab fa-discord"></i> Contacter sur Discord</button>
+                            </div>
+                        </div>
+
+                        <!-- PREMIUM HQ -->
+                        <div class="pv6-card" data-plan="premiumhq">
+                            <div class="pv6-card-inner">
+                                <div class="pv6-glow pv6-glow-gold"></div>
+                                <div class="pv6-header">
+                                    <span class="pv6-badge pv6-badge-gold">ULTIME</span>
+                                    <h3 class="pv6-name pv6-text-gold">PremiumHQ</h3>
+                                    <div class="pv6-price-wrap">
+                                        <span class="pv6-amount pv6-text-gold">79</span><span
+                                            class="pv6-decimal pv6-text-gold">.99</span><span
+                                            class="pv6-currency pv6-text-gold">€</span>
+                                        <span class="pv6-period">/mois</span>
+                                    </div>
+                                    <p class="pv6-desc">Accès exclusif et prioritaire</p>
+                                </div>
+                                <div class="pv6-divider"></div>
+                                <ul class="pv6-features">
+                                    <li><i class="fas fa-check"></i> <strong>5000</strong> recherches / jour</li>
+                                    <li><i class="fas fa-check"></i> Bases exclusives privées (HQ)</li>
+                                    <li><i class="fas fa-check"></i> Support personnel dédié</li>
+                                    <li><i class="fas fa-check"></i> Accès API complet</li>
+                                    <li><i class="fas fa-check"></i> Badge d'honneur & Aura</li>
+                                </ul>
+                                <button class="pv6-btn pv6-btn-gold" onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')"><i
+                                        class="fab fa-discord"></i> Contacter sur Discord</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="pv6-comparative">
+                        <div class="pv6-section-title">
+                            <h3><i class="fas fa-scale-balanced"></i> Comparaison Détaillée</h3>
+                        </div>
+                        <div class="pv6-table-wrapper">
+                            <table class="pv6-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fonctionnalité</th>
+                                        <th>Free</th>
+                                        <th>Beginner</th>
+                                        <th class="pv6-highlight-col">Professional</th>
+                                        <th>PremiumHQ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Recherches quotidiennes</td>
+                                        <td>5</td>
+                                        <td>100</td>
+                                        <td class="pv6-highlight-col">500</td>
+                                        <td>5 000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Niveau de détail</td>
+                                        <td>Basique</td>
+                                        <td>Avancé</td>
+                                        <td class="pv6-highlight-col">Complet</td>
+                                        <td>Complet + Exclusif</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Historique</td>
+                                        <td><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td>30 jours</td>
+                                        <td class="pv6-highlight-col">Illimité</td>
+                                        <td>Illimité</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Export des données</td>
+                                        <td><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td class="pv6-highlight-col"><i class="fas fa-check pv6-yes"></i></td>
+                                        <td><i class="fas fa-check pv6-yes"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Accès API Rest</td>
+                                        <td><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td class="pv6-highlight-col"><i class="fas fa-xmark pv6-no"></i></td>
+                                        <td><i class="fas fa-check pv6-yes"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Trust Bar removed as per user request -->
+
+                    <!-- FAQ -->
+                    <div class="pv6-faq">
+                        <div class="pv6-section-title">
+                            <h3><i class="fas fa-circle-question"></i> Questions Fréquentes</h3>
+                        </div>
+                        <div class="pv6-faq-grid">
+                            <div class="pv6-faq-item" onclick="this.classList.toggle('open')">
+                                <h4>Est-ce vraiment un paiement unique ?</h4>
+                                <p>Oui, nous détestons les abonnements avec des prélèvements récurrents autant que vous.
+                                    Vous payez une seule fois, pour la vie.</p>
+                            </div>
+                            <div class="pv6-faq-item" onclick="this.classList.toggle('open')">
+                                <h4>Quand les recherches sont-elles réinitialisées ?</h4>
+                                <p>Votre quota de recherche quotidien se réinitialise tous les soirs à minuit
+                                    précisément, selon l'heure du serveur.</p>
+                            </div>
+                            <div class="pv6-faq-item" onclick="this.classList.toggle('open')">
+                                <h4>Puis-je payer en crypto monnaie ?</h4>
+                                <p>Absolument ! Nous acceptons Bitcoin, Solana et Litecoin. Ouvrez un ticket sur notre
+                                    serveur Discord pour procéder.</p>
+                            </div>
+                            <div class="pv6-faq-item" onclick="this.classList.toggle('open')">
+                                <h4>Proposez-vous une upgrade de plan ?</h4>
+                                <p>Oui. Si vous êtes "Beginner", vous ne paierez que la différence pour passer
+                                    "Professional". Contactez le support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Page -->
+            <section id="featuresPage" class="page">
+                <div class="container py-5">
+                    <h2 class="section-title">Nos <span class="text-gradient">Fonctionnalités</span></h2>
+                    <div class="features-grid">
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3>Protection Avancée</h3>
+                            <p>Algorithmes de détection de pointe pour identifier les menaces en temps réel.</p>
+                        </div>
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon icon-red"><i class="fas fa-search-location"></i></div>
+                            <h3>Recherche Profonde</h3>
+                            <p>Explorez des milliards d'enregistrements provenant de fuites de données mondiales.</p>
+                        </div>
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
+                            <h3>Confidentialité Totale</h3>
+                            <p>Recherches anonymisées et cryptées. Aucun historique conservé.</p>
+                        </div>
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon icon-red"><i class="fas fa-bolt"></i></div>
+                            <h3>Vitesse Instantanée</h3>
+                            <p>Résultats en quelques millisecondes grâce à notre infrastructure optimisée.</p>
+                        </div>
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon"><i class="fas fa-database"></i></div>
+                            <h3>Base Massive</h3>
+                            <p>Accès à l'une des plus grandes collections de violations de données au monde.</p>
+                        </div>
+                        <div class="feature-card tilt-card">
+                            <div class="card-shine"></div>
+                            <div class="feature-icon icon-red"><i class="fas fa-code"></i></div>
+                            <h3>API Robuste</h3>
+                            <p>Intégrez nos capacités de recherche dans vos propres outils via API REST.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="aboutPage" class="page">
+                <div class="container py-5">
+                    <h2 class="section-title">À <span class="text-gradient">Propos</span></h2>
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <h3>Notre Mission</h3>
+                            <p>KzLookup est née de la nécessité de fournir aux individus et aux entreprises les outils
+                                nécessaires pour naviguer en toute sécurité dans l'univers numérique.</p>
+                            <p>Notre équipe d'experts en cybersécurité travaille sans relâche pour indexer et analyser
+                                les violations de données du monde entier.</p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="about-stat tilt-card">
+                                <div class="card-shine"></div>
+                                <div class="about-stat-number">10k+</div>
+                                <p>Enregistrements Compromis</p>
+                            </div>
+                            <div class="about-stat tilt-card">
+                                <div class="card-shine"></div>
+                                <div class="about-stat-number red">50to+</div>
+                                <p>Sources de Données</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Page -->
+            <section id="contactPage" class="page">
+                <div class="container py-5">
+                    <h2 class="section-title">Contactez <span class="text-gradient">Notre Équipe</span></h2>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-card tilt-card">
+                                <div class="card-shine"></div>
+                                <h4><i class="fas fa-envelope"></i> Email</h4>
+                                <p>support@KzLookup.com</p>
+                            </div>
+                            <div class="contact-card tilt-card">
+                                <div class="card-shine"></div>
+                                <h4><i class="fab fa-discord"></i> Discord</h4>
+                                <p>discord.gg/ftvCVEagaq</p>
+                            </div>
+                            <div class="contact-card tilt-card">
+                                <div class="card-shine"></div>
+                                <h4><i class="fas fa-clock"></i> Support</h4>
+                                <p>Réponse sous 24h</p>
+                            </div>
+                        </div>
+                        <div class="contact-form-card">
+                            <form id="contactForm" onsubmit="submitContact(event)">
+                                <div class="input-group">
+                                    <label>Sujet</label>
+                                    <select id="contactSubject">
+                                        <option value="Partenariat">🤝 Partenariat</option>
+                                        <option value="Problème Achat">💳 Problème lors d'un achat</option>
+                                        <option value="Support Technique">🛠️ Support Technique</option>
+                                        <option value="Bug Report">🐛 Signalement de Bug</option>
+                                        <option value="Autre">📝 Autre demande</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="input-group">
+                                        <label>Nom</label>
+                                        <input type="text" id="contactName" placeholder="Votre nom" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label>Email</label>
+                                        <input type="email" id="contactEmail" placeholder="Votre email" required>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Message</label>
+                                    <textarea id="contactMessage" placeholder="Comment pouvons-nous vous aider ?"
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="btn-red-full">Envoyer le Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Page -->
+            <section id="apiPage" class="page">
+                <div class="container py-5">
+                    <h2 class="section-title">Documentation <span class="text-gradient">API</span></h2>
+                    <div class="api-card tilt-card">
+                        <div class="card-shine"></div>
+                        <h3><i class="fas fa-key"></i> Authentification</h3>
+                        <p>Utilisez votre clé API pour authentifier vos requêtes via le header <code>X-API-Key</code>.
+                        </p>
+                        <div class="code-block">X-API-Key:</div>
+                    </div>
+                    <div class="api-card tilt-card">
+                        <div class="card-shine"></div>
+                        <h3><i class="fas fa-plug"></i> Endpoints</h3>
+                        <div class="endpoint">
+                            <span class="method post">POST</span>
+                            <code>/api/search</code>
+                        </div>
+                        <p class="endpoint-desc">Recherche dans nos bases. Body: <code>{"query": "search_term"}</code>
+                        </p>
+                        <div class="endpoint">
+                            <span class="method get">GET</span>
+                            <code>/api/auth/me</code>
+                        </div>
+                        <p class="endpoint-desc">Récupère statistiques d'utilisation et crédits restants.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Community Page -->
+            <section id="usersPage" class="page">
+                <div class="container py-5">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h2 class="section-title"><i class="fas fa-user" style="color:var(--primary);"></i> Users</h2>
+                    </div>
+
+                    <div class="users-search-wrapper">
+                        <div class="search-input-wrapper" style="max-width: 600px; margin: 0 auto 1.5rem;">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="usersSearchInput" placeholder="Search username or display name..."
+                                oninput="filterUsersList()">
+                        </div>
+                    </div>
+
+                    <div class="users-filters">
+                        <button class="tag active" onclick="setUsersFilter('all')">Tous</button>
+                        <button class="tag" onclick="setUsersFilter('owner')"><i class="fas fa-crown text-red"></i>
+                            Owner</button>
+                        <button class="tag" onclick="setUsersFilter('staff')"><i
+                                class="fas fa-user-shield text-muted"></i> Staff</button>
+                        <button class="tag" onclick="setUsersFilter('premiumhq')"><i
+                                class="fas fa-gem text-primary"></i> Premium</button>
+                        <button class="tag" onclick="setUsersFilter('pro')"><i class="fas fa-bolt text-blue"></i>
+                            Pro</button>
+                        <button class="tag" onclick="setUsersFilter('beginner')"><i class="fas fa-star text-gold"></i>
+                            Beginner</button>
+                        <button class="tag" onclick="setUsersFilter('free')"><i class="fas fa-user text-muted"></i>
+                            Free</button>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: 2rem; margin-top: 1rem;">
+                        <span id="usersListCount" class="text-muted" style="font-size: 0.9rem;">0 results found</span>
+                    </div>
+
+                    <div id="usersDirectoryContainer" class="users-directory-container">
+                        <div class="loading-history" style="text-align:center;">Chargement des utilisateurs...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback Page -->
+            <section id="feedbackPage" class="page">
+                <div class="container py-5">
+                    <div style="text-align: center; margin-bottom: 3.5rem;">
+                        <h2 class="section-title"><i class="fas fa-star" style="color:var(--primary); margin-right: 15px;"></i> Feedback <span class="text-gradient">Communautaire</span></h2>
+                        <p class="section-subtitle" style="opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 1rem auto;">
+                            Avis en temps réel synchronisés depuis notre Discord. Utilisez la commande <code style="color: var(--primary-light); background: rgba(139,92,246,0.1); padding: 2px 8px; border-radius: 4px;">/avis</code> pour partager votre expérience !
+                        </p>
+                    </div>
+
+                    <div id="feedbackContainer" class="feedback-grid">
+                        <div class="loading-state" style="text-align: center; padding: 4rem 0; color: var(--text-dim); width: 100%; grid-column: 1/-1;">
+                            <i class="fas fa-circle-notch fa-spin" style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent-gold);"></i>
+                            <p>Extraction des avis depuis le réseau...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Page -->
+            <section id="dashboardPage" class="page">
+                <div class="dash-v4-wrapper">
+                    <!-- Dashboard Sidebar -->
+                    <aside class="dash-sidebar">
+                        <div class="dash-sidebar-profile">
+                            <div class="dash-sidebar-avatar-wrapper">
+                                <img id="dashAvatarImg" src="" class="dash-sidebar-avatar" style="display:none;">
+                                <div class="dash-sidebar-avatar" id="dashAvatarIcon"
+                                    style="display:flex; align-items:center; justify-content:center;">
+                                    <i class="fas fa-user" style="font-size:1.6rem; color:var(--text-dim);"></i>
+                                </div>
+                                <button class="dash-avatar-edit" onclick="openAvatarModal()"><i
+                                        class="fas fa-camera"></i></button>
+                            </div>
+                            <h3 id="dashUsername" class="dash-sidebar-name">...</h3>
+                            <p id="dashEmail" class="dash-sidebar-email">...</p>
+                            <div id="dashRoleBadge" class="dash-sidebar-role">...</div>
+                            <div id="dashSubscriptionInfo" class="dash-subscription-info" style="display:none; margin-top:0.5rem; padding:0.5rem; background:rgba(255,107,0,0.1); border:1px solid rgba(255,107,0,0.3); border-radius:8px;">
+                                <i class="fas fa-calendar-check" style="color:var(--primary); margin-right:0.5rem;"></i>
+                                <span id="dashSubscriptionText" style="font-size:0.8rem; color:var(--text-muted);">Abonnement actif</span>
+                                <div id="dashSubscriptionDays" style="font-size:0.7rem; color:var(--text-dim); margin-top:0.2rem;"></div>
+                            </div>
+                        </div>
+                        <nav class="dash-sidebar-nav">
+                            <button class="dash-nav-item active" onclick="switchDashTab('overview', this)"><i
+                                    class="fas fa-th-large"></i> Vue d'ensemble</button>
+                            <button class="dash-nav-item" onclick="switchDashTab('customization', this)"><i
+                                    class="fas fa-palette"></i> Personnalisation</button>
+                            <button class="dash-nav-item" onclick="switchDashTab('history', this)"><i
+                                    class="fas fa-clock-rotate-left"></i> Historique</button>
+                            <button class="dash-nav-item" onclick="switchDashTab('security', this)"><i
+                                    class="fas fa-shield-halved"></i> Sécurité</button>
+                        </nav>
+                        <div class="dash-sidebar-footer">
+                            <button class="dash-logout-btn" onclick="logout()">
+                                <i class="fas fa-right-from-bracket"></i> Déconnexion
+                            </button>
+                        </div>
+                    </aside>
+
+                    <!-- Dashboard Main Content -->
+                    <main class="dash-main-content">
+                        <!-- Overview Tab -->
+                        <div id="dashTab-overview" class="dash-tab active">
+                            <div class="dash-section-header">
+                                <h2><i class="fas fa-th-large"></i> Vue d'ensemble</h2>
+                                <p>Bienvenue sur votre espace personnel</p>
+                            </div>
+
+                            <!-- Stats Row -->
+                            <div class="dash-stats-grid">
+                                <div class="dash-stat-card">
+                                    <div class="dash-stat-icon"
+                                        style="background: rgba(99, 102, 241, 0.1); color: #818cf8;">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div class="dash-stat-info">
+                                        <span class="dash-stat-value" id="dashSearchesTotal">0</span>
+                                        <span class="dash-stat-label">Recherches totales</span>
+                                    </div>
+                                </div>
+                                <div class="dash-stat-card">
+                                    <div class="dash-stat-icon"
+                                        style="background: rgba(245, 158, 11, 0.1); color: #fbbf24;">
+                                        <i class="fas fa-bolt-lightning"></i>
+                                    </div>
+                                    <div class="dash-stat-info">
+                                        <span class="dash-stat-value" id="dashCreditsRemaining">0 / 0</span>
+                                        <span class="dash-stat-label">Quota restant</span>
+                                    </div>
+                                </div>
+                                <div class="dash-stat-card">
+                                    <div class="dash-stat-icon"
+                                        style="background: rgba(16, 185, 129, 0.1); color: #34d399;">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="dash-stat-info">
+                                        <span class="dash-stat-value" id="dashPlan">...</span>
+                                        <span class="dash-stat-label">Plan actuel</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Activity Chart -->
+                            <div class="dash-card" style="margin-bottom: 2rem;">
+                                <div class="dash-card-header">
+                                    <h3><i class="fas fa-chart-line"></i> Activité de recherche (7j)</h3>
+                                </div>
+                                <div style="height: 250px; width: 100%; padding: 1rem;">
+                                    <canvas id="usageChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Account Info + Quick Actions -->
+                            <div class="dash-two-col">
+                                <div class="dash-card">
+                                    <div class="dash-card-header">
+                                        <h3><i class="fas fa-fingerprint"></i> Identité du compte</h3>
+                                    </div>
+                                    <div class="dash-info-rows">
+                                        <div class="dash-info-row">
+                                            <span class="dash-info-label">UUID</span>
+                                            <span class="dash-info-value dash-copyable" id="dashUuid"
+                                                onclick="copyText('dashUuid')">...</span>
+                                        </div>
+                                        <div class="dash-info-row">
+                                            <span class="dash-info-label">Discord</span>
+                                            <span class="dash-info-value" id="dashDiscord">Non lié</span>
+                                        </div>
+                                        <div class="dash-info-row">
+                                            <span class="dash-info-label">Membre depuis</span>
+                                            <span class="dash-info-value" id="dashCreatedAt">--/--/--</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dash-card">
+                                    <div class="dash-card-header">
+                                        <h3><i class="fas fa-bolt"></i> Actions rapides</h3>
+                                    </div>
+                                    <div class="dash-quick-actions">
+                                        <button class="dash-action-btn" onclick="viewUserProfile(currentUser.uuid)">
+                                            <i class="fas fa-eye"></i> Voir mon profil public
+                                        </button>
+                                        <button class="dash-action-btn" onclick="copyProfileLink()">
+                                            <i class="fas fa-link"></i> Copier mon lien
+                                        </button>
+                                        <button class="dash-action-btn"
+                                            onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')">
+                                            <i class="fab fa-discord"></i> Rejoindre Discord
+                                        </button>
+                                        <button class="dash-action-btn" onclick="showPage('pricing')">
+                                            <i class="fas fa-arrow-up-right-dots"></i> Upgrade plan
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent History Preview -->
+                            <div class="dash-card">
+                                <div class="dash-card-header">
+                                    <h3><i class="fas fa-clock-rotate-left"></i> Activité récente</h3>
+                                    <button class="dash-card-action"
+                                        onclick="switchDashTab('history', document.querySelector('[onclick*=history]'))">Tout
+                                        voir <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                                <div id="dashHistory" class="dash-history-list-v2"
+                                    style="max-height:250px; overflow-y:auto;">
+                                    <div class="loading-history">Chargement...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customization Tab -->
+                        <div id="dashTab-customization" class="dash-tab">
+                            <div class="dash-section-header">
+                                <h2><i class="fas fa-palette"></i> Personnalisation</h2>
+                                <p>Personnalisez votre profil public</p>
+                            </div>
+                            <div class="dash-card">
+                                <div class="dash-card-header">
+                                    <h3><i class="fas fa-pen-fancy"></i> Mon profil</h3>
+                                    <button class="dash-save-btn" onclick="saveProfileCustomization()"><i
+                                            class="fas fa-save"></i> Enregistrer</button>
+                                </div>
+                                <div class="dash-custom-form">
+                                    <!-- Bio -->
+                                    <div class="dash-form-group full-width">
+                                        <label><i class="fas fa-align-left"></i> Biographie publique</label>
+                                        <textarea id="customBio" placeholder="Décrivez-vous en quelques mots..."
+                                            rows="3"></textarea>
+                                    </div>
+                                    <!-- Banner -->
+                                    <div class="dash-form-group">
+                                        <label><i class="fas fa-image"></i> Bannière de profil</label>
+                                        <input type="text" id="customBanner" placeholder="URL de l'image...">
+                                        <label for="bannerFileInput" class="dash-upload-zone">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            <span>Uploader (PNG, JPG)</span>
+                                        </label>
+                                        <input type="file" id="bannerFileInput" accept="image/*" style="display:none;"
+                                            onchange="handleProfileFileUpload(this, 'customBanner', 'bannerStatus')">
+                                        <div id="bannerStatus" class="dash-upload-status"></div>
+                                        <div id="bannerPreview" class="dash-banner-preview" style="display:none;">
+                                            <img id="bannerPreviewImg" src="" alt="Aperçu">
+                                        </div>
+                                    </div>
+                                    <!-- Music -->
+                                    <div class="dash-form-group">
+                                        <label><i class="fas fa-headphones"></i> Musique d'ambiance</label>
+                                        <input type="text" id="customMusic" placeholder="URL du MP3...">
+                                        <label for="musicFileInput" class="dash-upload-zone">
+                                            <i class="fas fa-music"></i>
+                                            <span>Uploader MP3</span>
+                                        </label>
+                                        <input type="file" id="musicFileInput" accept="audio/mpeg" style="display:none;"
+                                            onchange="handleProfileFileUpload(this, 'customMusic', 'musicStatus')">
+                                        <div id="musicStatus" class="dash-upload-status"></div>
+                                    </div>
+                                    <!-- Effect -->
+                                    <div class="dash-form-group">
+                                        <label><i class="fas fa-wand-magic-sparkles"></i> Effet de bordure</label>
+                                        <select id="customEffect">
+                                            <option value="none">Aucun</option>
+                                            <option value="glitch">⚡ Digital Glitch</option>
+                                            <option value="glow">✨ Aura Radiante</option>
+                                            <option value="sparkles">🌟 Étoiles Stellaires</option>
+                                            <option value="rainbow">🌈 Chroma Cycle</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="dash-custom-actions">
+                                    <button class="dash-preview-btn" onclick="viewUserProfile(currentUser.uuid)"><i
+                                            class="fas fa-eye"></i> Aperçu profil</button>
+                                    <button class="dash-publish-btn" onclick="copyProfileLink()"><i
+                                            class="fas fa-link"></i> Publier / Copier mon lien</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Tab -->
+                        <div id="dashTab-history" class="dash-tab">
+                            <div class="dash-section-header">
+                                <h2><i class="fas fa-clock-rotate-left"></i> Historique</h2>
+                                <p>Votre empreinte numérique</p>
+                            </div>
+                            <div class="dash-card">
+                                <div class="dash-card-header">
+                                    <h3><i class="fas fa-list"></i> Toutes les recherches</h3>
+                                    <button class="dash-card-action" onclick="loadUserHistory()"><i
+                                            class="fas fa-refresh"></i> Rafraîchir</button>
+                                </div>
+                                <div id="dashHistoryFull" class="dash-history-list-v2"
+                                    style="max-height:500px; overflow-y:auto;">
+                                    <div class="loading-history">Chargement...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Tab -->
+                        <div id="dashTab-security" class="dash-tab">
+                            <div class="dash-section-header">
+                                <h2><i class="fas fa-shield-halved"></i> Sécurité</h2>
+                                <p>Gérez la sécurité de votre compte</p>
+                            </div>
+                            <div class="dash-two-col">
+                                <div class="dash-card">
+                                    <div class="dash-card-header">
+                                        <h3><i class="fas fa-key"></i> Mot de passe</h3>
+                                    </div>
+                                    <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;">Changez
+                                        régulièrement votre mot de passe pour protéger votre compte.</p>
+                                    <button class="dash-action-btn" onclick="openChangePasswordModal()"
+                                        style="width:100%;">
+                                        <i class="fas fa-key"></i> Modifier le mot de passe
+                                    </button>
+                                </div>
+                                <div class="dash-card">
+                                    <div class="dash-card-header">
+                                        <h3><i class="fab fa-discord"></i> Liaison Discord</h3>
+                                    </div>
+                                    <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;">Liez votre
+                                        compte Discord pour accéder aux fonctionnalités exclusives.</p>
+                                    <button class="dash-action-btn"
+                                        onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')"
+                                        style="width:100%;">
+                                        <i class="fab fa-discord"></i> Rejoindre & Lier
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="dash-card" style="margin-top:1.5rem;">
+                                <div class="dash-card-header">
+                                    <h3><i class="fas fa-headset"></i> Support</h3>
+                                </div>
+                                <div class="dash-support-banner">
+                                    <i class="fas fa-life-ring"></i>
+                                    <div>
+                                        <strong>Besoin d'aide ?</strong>
+                                        <p>Notre équipe est disponible sur Discord 24h/24 pour vous accompagner.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </section>
+
+
+
+
+
+
+            <!-- Auth Modal -->
+            <div id="authModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal('authModal')">&times;</span>
+                    
+                    <!-- Login Form -->
+                    <div id="loginForm" class="auth-box">
+                        <div class="auth-header">
+                            <div class="auth-logo"><i class="fas fa-eye"></i></div>
+                            <h2 class="auth-title">Connexion</h2>
+                            <p class="auth-subtitle">Accédez à votre espace personnel</p>
+                        </div>
+                        <form onsubmit="login(event)">
+                            <div class="form-group">
+                                <label>Nom d'utilisateur ou Email</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="loginUsername" placeholder="Username ou Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mot de passe</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="auth-btn">Se connecter</button>
+                        </form>
+                        <div class="auth-switch">
+                            Pas de compte ? <span onclick="switchAuth(false)">S'inscrire</span>
+                        </div>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div id="registerForm" class="auth-box" style="display: none;">
+                        <div class="auth-header">
+                            <div class="auth-logo"><i class="fas fa-user-plus"></i></div>
+                            <h2 class="auth-title">Inscription</h2>
+                            <p class="auth-subtitle">Rejoignez la communauté KzLookup</p>
+                        </div>
+                        <form onsubmit="register(event)">
+                            <div class="form-group">
+                                <label>Nom d'utilisateur</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="regUsername" placeholder="Username" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="regEmail" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mot de passe</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="regPassword" placeholder="Mot de passe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Discord ID (Optionnel)</label>
+                                <div class="input-wrapper">
+                                    <i class="fab fa-discord"></i>
+                                    <input type="text" id="regDiscordId" placeholder="Discord ID">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Discord @ (Optionnel)</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-at"></i>
+                                    <input type="text" id="regDiscordTag" placeholder="@username">
+                                </div>
+                            </div>
+                            <button type="submit" class="auth-btn">S'inscrire</button>
+                        </form>
+                        <div class="auth-switch">
+                            Déjà inscrit ? <span onclick="switchAuth(true)">Se connecter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Modal -->
+            <div id="paymentModal" class="modal">
+                <div class="modal-content" style="max-width:500px;text-align:center;">
+                    <span class="close-btn" onclick="closeModal('paymentModal')">&times;</span>
+                    <div class="payment-badge"><i class="fab fa-discord"></i> Contactez-nous sur Discord</div>
+                    <h2 id="paymentTitle">Acheter un Plan</h2>
+                    <p id="paymentDesc" class="text-muted" style="margin:0.5rem 0 2rem;"></p>
+                    <div style="padding: 2rem;">
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Pour acheter un plan, rejoignez notre serveur Discord et contactez-nous pour payer et activer votre compte.</p>
+                        <button class="btn-red-full" onclick="window.open('https://discord.gg/ftvCVEagaq', '_blank')" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                            <i class="fab fa-discord"></i> Rejoindre Discord
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Detail Modal -->
+            <div id="resultDetailModal" class="modal">
+                <div class="modal-content" style="max-width:700px;">
+                    <span class="close-btn" onclick="closeModal('resultDetailModal')">&times;</span>
+                    <div class="modal-header-actions"
+                        style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; padding: 0 1rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1.5rem;">
+                        <h2 style="margin:0; font-size: 1.6rem; line-height: 1.2; width: 100%;">Détails de l'enregistrement</h2>
+                        <button class="btn btn-download-detail" id="downloadSingleBtn" style="margin: 0 auto;">
+                            <i class="fas fa-file-arrow-down"></i> <span>TÉLÉCHARGER</span>
+                        </button>
+                    </div>
+                    <div id="detailResultContent" class="detail-content"></div>
+                </div>
+            </div>
+
+            <!-- Discord ID Modal -->
+            <div id="discordModal" class="modal">
+                <div class="modal-content discord-modal-content">
+                    <span class="close-btn" onclick="closeModal('discordModal')">&times;</span>
+                    <div class="discord-embed-wrapper">
+                        <div class="discord-embed-stripe"></div>
+                        <div class="discord-embed-inner">
+                            <div class="discord-header">
+                                <i class="fab fa-discord"></i>
+                                <h3>Liaison Compte Discord</h3>
+                            </div>
+                            <div class="discord-body">
+                                <p class="discord-desc">Reliez votre compte pour recevoir des notifications et accéder à
+                                    nos services exclusifs sur Discord.</p>
+
+                                <div class="discord-field">
+                                    <label>DISCORD ID</label>
+                                    <input type="text" id="modalDiscordId" placeholder="Ex: 123456789012345678">
+                                    <span class="field-hint">Identifiant numérique unique</span>
+                                </div>
+
+                                <div class="discord-field">
+                                    <label>DISCORD @TAG</label>
+                                    <input type="text" id="modalDiscordTag" placeholder="Ex: @username">
+                                    <span class="field-hint">Votre nom d'utilisateur Discord</span>
+                                </div>
+                            </div>
+                            <div class="discord-footer">
+                                <button class="btn-discord-save" onclick="saveDiscordId()">
+                                    <i class="fas fa-check"></i> Enregistrer
+                                </button>
+                                <button class="btn-discord-cancel" onclick="closeModal('discordModal')">Ignorer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avatar Edit Modal -->
+            <div id="avatarModal" class="modal">
+                <div class="modal-content" style="max-width:500px;text-align:center;">
+                    <span class="close-btn" onclick="closeModal('avatarModal')">&times;</span>
+                    <h2>Modifier la Photo de Profil</h2>
+                    <p class="text-muted" style="margin-bottom:1.5rem;">Choisissez une image sur votre ordinateur.</p>
+
+                    <div id="avatarPreviewContainer" style="margin-bottom: 1.5rem; display:none;">
+                        <img id="avatarPreview" src="" alt="Preview"
+                            style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--primary); margin:0 auto;">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="avatarFileInput" class="file-upload-label"
+                            style="display:block; padding:2rem; border:2px dashed rgba(139,92,246,0.3); border-radius:12px; cursor:pointer; transition:all 0.3s ease;">
+                            <i class="fas fa-cloud-upload-alt"
+                                style="font-size:2rem; color:var(--primary); margin-bottom:1rem; display:block;"></i>
+                            <span id="fileInputText">Cliquez pour choisir un fichier</span>
+                            <input type="file" id="avatarFileInput" accept="image/*" onchange="handleAvatarUpload(this)"
+                                style="display:none;">
+                        </label>
+                    </div>
+
+                    <button class="btn-red-full" id="saveAvatarBtn" onclick="saveAvatarChange()"
+                        style="margin-top:1.5rem;" disabled>Enregistrer</button>
+                    <p id="avatarStatus" style="margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);"></p>
+                </div>
+            </div>
+
+            <!-- User Profile Modal & Entry Overlay -->
+
+
+
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span class="logo-text" style="font-size:1.2rem;">Kz<span class="logo-red">Lookup</span></span>
+                <p class="text-muted">&copy; 2026 KzLookup. Tous droits réservés.</p>
+                <a href="https://discord.gg/ftvCVEagaq" target="_blank" class="footer-discord"><i
+                        class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Particles + Tilt + Mouse effects -->
+    <script>
+        // ====== PARTICLE BACKGROUND ======
+        (function () {
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let w, h, particles = [], mouse = { x: -1000, y: -1000 };
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            document.addEventListener('mousemove', e => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            class Particle {
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.r = Math.random() * 1.5 + 0.5;
+                    this.alpha = Math.random() * 0.4 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    // Mouse repulsion
+                    const dx = this.x - mouse.x, dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        const force = (120 - dist) / 120 * 0.8;
+                        this.x += dx / dist * force;
+                        this.y += dy / dist * force;
+                    }
+                    if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(139, 92, 246, ${this.alpha})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => { p.update(); p.draw(); });
+                // Connect nearby particles
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255, 26, 26, ${0.06 * (1 - dist / 100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // Effects removed as per user request for static interactions
+    </script>
+
+    <!-- Anti-inspection protection -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        let alertSent = false;
+        setInterval(function () {
+            var before = new Date().getTime();
+            debugger;
+            var after = new Date().getTime();
+            if (after - before > 100 && !alertSent) {
+                alertSent = true;
+                if (typeof sendSecurityAlert === 'function') sendSecurityAlert("Console ouverte");
+                document.body.innerHTML = "<div style='height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0a0a0a;color:#ff1a1a;font-family:sans-serif;text-align:center'><h1>🚩 INSPECTION DÉTECTÉE</h1><p style='color:#888'>Votre IP a été envoyée à l'administrateur.</p></div>";
+                setTimeout(() => window.location.reload(), 3000);
+            }
+        }, 1000);
+        document.onkeydown = function (e) {
+            // Only block dangerous combinations
+            const isF12 = e.keyCode === 123;
+            const isCtrlShiftI = e.ctrlKey && e.shiftKey && e.keyCode === 73;
+            const isCtrlShiftJ = e.ctrlKey && e.shiftKey && e.keyCode === 74;
+            const isCtrlU = e.ctrlKey && e.keyCode === 85;
+            const isCtrlS = e.ctrlKey && e.keyCode === 83;
+
+            if (isF12 || isCtrlShiftI || isCtrlShiftJ || isCtrlU || isCtrlS) {
+                if (typeof sendSecurityAlert === 'function') sendSecurityAlert("Raccourci interdit: " + e.keyCode);
+                return false;
+            }
+            return true;
+        };
+        document.addEventListener('dragstart', e => e.preventDefault());
+    </script>
+
+    <!-- Public Profile Modal -->
+    <div id="userProfileModal" class="modal">
+        <div class="modal-content profile-modal premium-glass" style="max-width:700px; padding:0; overflow:hidden;">
+            <!-- Close / Home -->
+            <span class="close-btn" onclick="closeModal('userProfileModal')"
+                style="z-index:20; color:#fff;">&times;</span>
+
+            <!-- Banner -->
+            <div id="profileBanner" class="user-profile-banner" style="height:220px; position:relative;">
+                <div class="banner-overlay"></div>
+                <!-- Music Player overlay on banner -->
+                <div id="profileMusicPlayer" class="premium-music-bar"
+                    style="display:none; position:absolute; top:12px; left:12px; z-index:10;">
+                    <div class="music-info">
+                        <div class="music-icon-animated">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span id="profileMusicTitle">Lecture en cours...</span>
+                    </div>
+                    <button class="music-ctrl-btn" onclick="toggleProfileMusic()">
+                        <i id="profileMusicBtnIcon" class="fas fa-play"></i>
+                    </button>
+                    <audio id="profileAudio" loop></audio>
+                </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div style="position:relative; padding:0 2rem 2rem; margin-top:-60px; z-index:5;">
+                <!-- Avatar -->
+                <div class="user-profile-header" style="display:flex; align-items:flex-end; gap:1.2rem;">
+                    <div class="user-profile-avatar-wrapper" style="flex-shrink:0;">
+                        <div id="profileEffectLayer" class="profile-effect-layer"></div>
+                        <div class="profile-avatar-glow"></div>
+                        <img id="profileAvatarImg" src="" alt="Avatar" class="premium-avatar">
+                        <div id="profileAvatarIcon" class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>
+                    </div>
+                    <div class="profile-title-area" style="flex:1; min-width:0; padding-bottom:0.5rem;">
+                        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                            <h2 id="profileUsername" class="text-gradient" style="margin:0; font-size:1.6rem;">...</h2>
+                            <div id="profileBadges" class="profile-badges-row"></div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:1rem; margin-top:0.3rem; flex-wrap:wrap;">
+                            <div id="profileDiscordBadge" class="profile-discord" style="font-size:0.85rem;">@...</div>
+                        </div>
+                        <div
+                            style="display:flex; align-items:center; gap:0.4rem; margin-top:0.4rem; font-size:0.75rem; color:var(--text-dim);">
+                            <span id="profileStatDate" style="opacity:0.7;">--</span>
+                            <span style="opacity:0.3;">•</span>
+                            <span style="display:flex; align-items:center; gap:0.3rem;"><i class="fas fa-eye"
+                                    style="font-size:0.7rem;"></i> <span id="profileStatViews">0</span> vues</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio -->
+                <div class="profile-bio-card"
+                    style="margin-top:1.2rem; padding:1rem 1.2rem; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
+                    <p id="profileBioText" style="margin:0; color:var(--text-dim); font-size:0.9rem; line-height:1.5;">
+                        Aucune bio disponible.</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="profile-stats-grid"
+                    style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
+                    <div class="p-stat-card" id="profilePlanCard"
+                        style="text-align:center; padding:1rem; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
+                        <i class="fas fa-crown"
+                            style="font-size:1.2rem; margin-bottom:0.4rem; display:block; color:var(--primary);"></i>
+                        <span id="profilePlanText" style="font-weight:800; font-size:1rem;">FREE</span>
+                        <label
+                            style="display:block; font-size:0.65rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-top:0.2rem;">PLAN</label>
+                    </div>
+                    <div class="p-stat-card"
+                        style="text-align:center; padding:1rem; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
+                        <i class="fas fa-calendar-alt"
+                            style="font-size:1.2rem; margin-bottom:0.4rem; display:block; color:var(--primary);"></i>
+                        <span id="profileStatDateCard" style="font-weight:800; font-size:1rem;">--/--</span>
+                        <label
+                            style="display:block; font-size:0.65rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-dim); margin-top:0.2rem;">INSCRIPTION</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avatar Upload Modal -->
+    <div id="avatarModal" class="modal">
+        <div class="modal-content" style="max-width:400px; text-align:center; padding:2rem;">
+            <span class="close-btn" onclick="closeModal('avatarModal')">&times;</span>
+            <div style="margin-bottom:1.5rem;">
+                <div
+                    style="width:100px; height:100px; border-radius:50%; background:var(--card-bg); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; border:2px solid var(--primary); overflow:hidden;">
+                    <img id="avatarPreview" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
+                    <i id="avatarPlaceholder" class="fas fa-user" style="font-size:3rem; color:var(--text-dim);"></i>
+                </div>
+                <h3 style="color:#fff; margin-bottom:0.5rem;">Changer ma Photo</h3>
+                <p class="text-muted" style="font-size:0.85rem;">Format JPG/PNG, Max 2MB</p>
+            </div>
+
+            <div class="file-upload-zone" style="margin-bottom:1.5rem;">
+                <label for="avatarFileInput" class="p-btn" style="display:inline-block; cursor:pointer;">
+                    <i class="fas fa-upload"></i> Choisir un fichier
+                </label>
+                <input type="file" id="avatarFileInput" accept="image/*" style="display:none;"
+                    onchange="handleAvatarUpload(this)">
+            </div>
+
+            <div id="avatarStatus" style="font-size:0.8rem; margin-bottom:1rem;"></div>
+
+            <button class="p-btn" onclick="saveAvatarChange()" id="saveAvatarBtn" style="display:none;">
+                Enregistrer la PDP
+            </button>
+        </div>
+    </div>
+    <!-- Password Change Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content" style="max-width:400px; text-align:center; padding:2rem;">
+            <span class="close-btn" onclick="closeModal('passwordModal')">&times;</span>
+            <div style="margin-bottom:1.5rem;">
+                <div
+                    style="width:60px; height:60px; border-radius:50%; background:rgba(139,92,246,0.1); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; border:1px solid var(--primary);">
+                    <i class="fas fa-lock" style="font-size:1.5rem; color:var(--primary);"></i>
+                </div>
+                <h3 style="color:#fff; margin-bottom:0.5rem;">Modifier le mot de passe</h3>
+                <p class="text-muted" style="font-size:0.85rem;">Sécurisez votre compte avec un nouveau mot de passe.
+                </p>
+            </div>
+
+            <div class="auth-box" style="background:transparent; padding:0; border:none; box-shadow:none;">
+                <div class="input-group">
+                    <label>Mot de passe actuel</label>
+                    <input type="password" id="currentPassInput" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Nouveau mot de passe</label>
+                    <input type="password" id="newPassInput" placeholder="Min. 6 caractères" required>
+                </div>
+                <button class="auth-submit" onclick="submitPasswordChange()" id="changePassBtn">
+                    Mettre à jour
+                </button>
+            </div>
+            <div id="passwordStatus" style="font-size:0.8rem; margin-top:1rem;"></div>
+        </div>
+    </div>
+</body>
+
+</html>
